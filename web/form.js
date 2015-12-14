@@ -5,8 +5,8 @@
  */
 
 var myForm, fileSelector, progress;
-var url = "/BlogWS2015/resources/files/upload";
-
+//var url = "/BlogWS2015/resources/files/upload";
+var url = "/BlogWS2015/resources/article";
 window.onload = function () {
     myForm = document.querySelector("#myForm");
     fileSelector = document.querySelector("#fileSelector");
