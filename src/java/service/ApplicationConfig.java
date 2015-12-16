@@ -24,6 +24,7 @@ public class ApplicationConfig extends Application {
 
         return resources;
     }
+    
 
     /**
      * Do not modify addRestResourceClasses() method. It is automatically
