@@ -17,10 +17,13 @@ import org.glassfish.jersey.media.multipart.FormDataBodyPart;
 import org.glassfish.jersey.media.multipart.FormDataMultiPart;
 
 @Path("/files")
+
 public class JerseyFileUpload {
 
-    //private static final String SERVER_UPLOAD_LOCATION_FOLDER = "/Users/mbuffa/Desktop/";
-    private static final String SERVER_UPLOAD_LOCATION_FOLDER = "/Applications/NetBeans/glassfish-4.1/glassfish/domains/domain1/docroot/uploadedImages/";
+    
+    private static final String SERVER_UPLOAD_LOCATION_FOLDER = "../applications/__internal/BlogWS2015";
+    //private static final String SERVER_UPLOAD_LOCATION_FOLDER = "C://Users/Florian/Desktop/imgUpload/";     
+    //private static final String SERVER_UPLOAD_LOCATION_FOLDER = "/Applications/NetBeans/glassfish-4.1/glassfish/domains/domain1/docroot/uploadedImages/";
  
     /**
      * Upload a File
@@ -45,14 +48,13 @@ public class JerseyFileUpload {
         // GETTING THE FILES
         List<FormDataBodyPart> files = form.getFields("file");
         
-        System.out.println("J'ai récupéré et je sauvegarde les fichiers suivants : ");
+        System.out.println("Sauvegarde des fichiers suivants : ");
 
         for (FormDataBodyPart filePart : files) {
             ContentDisposition headerOfFilePart = filePart.getContentDisposition();  
-            String filePath = SERVER_UPLOAD_LOCATION_FOLDER + headerOfFilePart.getFileName();
-            
+            File output = new File(SERVER_UPLOAD_LOCATION_FOLDER);
+            String filePath =  output.getAbsolutePath() + File.separator+ headerOfFilePart.getFileName();
             InputStream fileInputStream = filePart.getValueAs(InputStream.class);
-             
             System.out.println("Fichier : " + filePath);
             
             // Get the inputStream for the file and save it
