@@ -52,6 +52,14 @@ public class Article implements Serializable {
         this.time = new Date();
         this.images = new ArrayList<Image>();
     }
+
+    public List<Image> getImages() {
+        return images;
+    }
+
+    public void setImages(List<Image> images) {
+        this.images = images;
+    }
     
     /******************/
     

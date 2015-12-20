@@ -23,7 +23,12 @@ input {
     margin-right:70px;
     width:150px;
 }
+textarea{
+    float:right;
+    margin-right:70px;
+    width:150px;
+}
 
-input:invalid {
+input:invalid, textarea:invalid {
     background-color:pink;
 }
