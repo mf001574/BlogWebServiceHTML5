@@ -6,10 +6,25 @@
 
 var myForm, fileSelector, progress;
 var url = "/BlogWS2015/resources/files/upload";
+var loadImages;
 window.onload = function () {
     myForm = document.querySelector("#myForm");
     fileSelector = document.querySelector("#fileSelector");
     progress = document.querySelector("#progress");
+    loadImages = function(event) {
+        var output = document.getElementById('output');
+        output.innerHTML = "";
+        $.each(event.target.files, function(i, j) {
+            var reader = new FileReader();
+            console.log("Chargement de l'image "+j.name);
+            reader.onload = function(){
+                output.innerHTML+= "<img class='imgUpload' src='"+reader.result+"'>";
+                console.log("Read image : "+reader.result);
+            };
+             reader.readAsDataURL(j);
+            
+        });
+    };
 
 }
 function sendForm() {

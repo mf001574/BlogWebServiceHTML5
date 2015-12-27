@@ -4,25 +4,24 @@ and open the template in the editor.
 -->
 <!DOCTYPE html>
 <html>
- <head>
+<head>
         <title>Page d'accueil</title>
         <link href="style.css"  rel='stylesheet'/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
         <meta lang="fr">
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
-    </head>
+</head>
     <body>
-        <a href="ajaxForm.html">Formulaire avec l'upload des images</a>
-        <div id="header" class="modalbox">
-            <h1>Micro-Blogging</h1>
-            <h3>Exemple d'utilisation de WebServices RESTful</h3>
-        </div>
-        
-        <div id="content">
-            <div id="list-article"></div>
-        </div>
-        
-        <div id="update-article" class="modalbox">
+        <header>
+            <h1>Micro Blog</h1>
+            <h3>WebServices RESTful HTML5</h3>
+        </header>
+        <nav>
+            <!-- Contenu charger par loadMenu.js-->
+        </nav>
+        <section id="list-article"></section>        
+        <section id="update-article" class="modalbox">
             <h3>Modification d'un Article</h3>
             <form method="post" id="formupdate-article" onsubmit="return false;">
                 <input type="hidden" id="id" name="id" />
@@ -42,28 +41,9 @@ and open the template in the editor.
                 </p>
             </form>
             <div class="clearfix"></div>
-        </div>
-            
-        <div id="write-article" class="modalbox">
-            <h3>Ecrire un Article</h3>
-            <form method="post" id="form-article" onsubmit="return false;">
-                <p>
-                    <label for="titre">Titre</label>
-                    <input type="text" id="titre" name="titre"/>
-                </p>
-                <p>
-                    <label for="content">Texte</label>
-                    <textarea id="content" name="content"></textarea>
-                </p>
-
-                <p class="alignright">
-                    <a href="#" id="write" class="button blue">Publier</a>
-                </p>
-            </form>
-            <div class="clearfix"></div>
-        </div>
-        
-        
+        </section>
+      
         <script src="function.js"></script>
+        <script src="loadMenu.js"></script>
     </body>
 </html>

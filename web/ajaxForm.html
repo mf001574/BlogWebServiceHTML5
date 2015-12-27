@@ -4,34 +4,55 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<html lang="en">
+<html lang="fr">
     <head>
-        <title>Form with file selector + ajax / Xhr2</title>
+        <title>Formulaire d'ajout d'article</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="form.css"/>
+        <link href="style.css"  rel='stylesheet'/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
         <script src="form.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+        <script src="loadMenu.js"></script>
+
     </head>
     <body>
-        <form onsubmit="return sendForm();" id="myForm">
-            <fieldset>
-                <legend>Poster un nouveau message dans le Blog</legend>
-
-                <label for="titre">Titre</label>
-                <input type="text" id="titre" required name="titre">
-
-                <br>
-
-                <label for="contenu">Contenu</label>
-                <textarea id="contenu" required name="contenu"></textarea>
-                <br>
-                <label for="fileSelector">Images à uploader</label>
-                <input type="file" id="fileSelector" multiple>
-                <br>
-                Progression de l'upload des fichiers: <progress value=0 id="progress"></progress>
+        <header>
+            <h1>Micro Blog</h1>
+            <h3>WebServices RESTful HTML5</h3>
+        </header>
+        <nav>
+            <!-- Contenu charger par loadMenu.js-->
+        </nav>
+        <article>
+            <form onsubmit="return sendForm();" id="myForm">
+             
                 <p>
-                    <button>Submit form</button>
-            </fieldset>
-        </form>
+                  <label for="titre">Titre</label>
+                  <input type="text" id="titre" required name="titre">
+                </p>  
+
+                <p>
+                   <label for="contenu">Contenu</label>
+                  <textarea id="contenu" required name="contenu"></textarea> 
+                </p> 
+                <p>
+                  <label for="fileSelector">Images à uploader</label>
+                  <input type="file" class="fileUpload" id="fileSelector" multiple onchange="loadImages(event)"> 
+                  <div id="output">
+                  </div>
+                </p>
+                <p>
+                    Progression de l'upload des fichiers: <progress value=0 id="progress"></progress>
+                </p>
+                  
+                  <p>
+                      <button class='button blue submitButton'>Valider</button>
+                  </p>
+                
+            </form>  
+        </article>
+            
     </body>
 </html>

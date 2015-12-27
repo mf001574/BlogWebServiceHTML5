@@ -1,3 +1,4 @@
+var pasSlider = 200;
 jQuery(document).ready(function($){
     // Ce code est appelée quand la page est chargée ou reloadée
     // On charge les 5 derniers articles (ou moins) depuis le web service
@@ -22,7 +23,34 @@ jQuery(document).ready(function($){
             // ]        // CAS 2 : plusieurs articles
             $(data).each(function(){
                 i++
-                $("#list-article").prepend(renderItem(this.id, this.titre, this.content, this.time));
+                $("#list-article").prepend(renderItem(this.id, this.titre, this.content, this.time, this.images));
+                $('.bReculer').click(function(){
+                    var id = $(this).attr("value");
+                    var nbImages =  $('#slider'+id)[0].childElementCount;
+                    var left = $('#slider'+id).css("left");
+                    var valueLeft = parseInt(left);
+                    if(isNaN(valueLeft)){
+                        valueLeft =0;
+                    }
+                    if(valueLeft<=(nbImages-1)*pasSlider*-1){
+                        return 0;
+                    }
+                    valueLeft-=pasSlider;
+                    $('#slider'+id).css('left',valueLeft+"px");
+                });
+                $('.bAvancer').click(function(){
+                    var id = $(this).attr("value");
+                    var left = $('#slider'+id).css("left");
+                    var valueLeft = parseInt(left);
+                    if(isNaN(valueLeft)){
+                        valueLeft =0 ;
+                    }
+                     if(valueLeft>=0){
+                        return 0;
+                    }
+                    valueLeft+=pasSlider;
+                    $('#slider'+id).css('left',valueLeft+"px");
+                });
             });
             if(i==0)
                 showWelcome();
@@ -37,7 +65,7 @@ jQuery(document).ready(function($){
                 // Si on vient ici après la publication d'un nouvel article on
                 // fait apparitre le bouton "load more"
                 console.log("INSERT");
-                $("<div id='loadmore'><a href='#' id='load' >J'en veux plus !</a></div>").insertAfter("#list-article");
+               // $("<div id='loadmore'><a href='#' id='load' >J'en veux plus !</a></div>").insertAfter("#list-article");
             }
         }
     },"json");
@@ -55,7 +83,7 @@ jQuery(document).ready(function($){
             });
             // On ajoute l'article dans la page
             $.get(d,function(data){
-                $("#list-article").prepend(renderItem(data.id, data.titre, data.content, data.time));  
+                $("#list-article").prepend(renderItem(data.id, data.titre, data.content, data.time, data.images));  
             });
         });
        
@@ -181,16 +209,27 @@ jQuery(document).ready(function($){
     }
 
     // creation et ajout d'un article dans la page
-    function renderItem(id, titre, content, date)
-    {
+    function renderItem(id, titre, content, date, images)
+    {   
         var myDate = new Date( date );
         var strDate = "";
         strDate += myDate.getUTCDate()+"/"+myDate.getMonth()+"/"+myDate.getFullYear();
         strDate += " à "+myDate.getHours()+":"+myDate.getMinutes();
-        return "<div class='article' id='article-"+id+"'>\
+        var res ="";
+        res+="<article id='article-"+id+"' class='articlePost'>\
                 <h2>"+titre+"</h2></a>\
-                <p class='content'>"+content+"</p>\
-                <div class='postmeta'>\n\
+                <p class='content'>"+content+"</p>";
+        res+="<div class='slider'><ul class='Limg' id='slider"+id+"'>";
+        for (i=0;i<images.length;i++){
+            console.log(images[i].nomImage)
+            res+="<li><img src='"+images[i].nomImage+"'></li>";
+        }
+        res+="</ul></div>";
+        res+="<div class='sliderButtons'>";
+        res+="<button class='bReculer button blue' value='"+id+"'><i class='fa fa-arrow-circle-left'></i></button>";
+        res+= "<button class='bAvancer button blue' value='"+id+"'><i class='fa fa-arrow-circle-right'></i></button>";
+        res+= "</div>";
+        res+="<div class='postmeta'>\n\
                     <p class='alignleft'>Article publi&eacute; le "+strDate+"</p>\n\
                     <p class='alignright'>\n\
                         <a class='button blue delete' href='/BlogWS2015/resources/article/"+id+"'>Supprimer</a>\n\
@@ -198,6 +237,7 @@ jQuery(document).ready(function($){
                     </p></div>\n\
                     <div class='clearfix'></div>\
                 </div>";
+        return res;
     }
 
     function updateRenderedItem(id, titre, content)
@@ -216,7 +256,9 @@ jQuery(document).ready(function($){
     }
     
     function showWelcome(){
-        $("#list-article").html("<div id='welcome'>Aucun article n'est présent.<br />Voulez-vous &ecirc;tre le premier ?</div>");
+        $("#list-article").html("<article id='welcome'>Aucun article n'est présent.<br />Voulez-vous &ecirc;tre le premier ?</article>");
     }
+    
+      
 
 });

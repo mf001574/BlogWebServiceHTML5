@@ -19,16 +19,32 @@ label {
 }
 
 input {
-    float:right;
     margin-right:70px;
     width:150px;
 }
 textarea{
-    float:right;
     margin-right:70px;
     width:150px;
 }
 
 input:invalid, textarea:invalid {
     background-color:pink;
+}
+.submitButton{
+    margin-left: auto !important;
+    margin-right: auto !important;
+    display: block !important;
+}
+
+form p{
+    margin-top:10px;
+}
+
+input.fileUpload{
+   
+}
+
+.imgUpload{
+    width: 100px;
+    height: 100px;
 }

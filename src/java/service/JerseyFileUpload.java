@@ -27,9 +27,10 @@ import org.glassfish.jersey.media.multipart.FormDataMultiPart;
 public class JerseyFileUpload extends AbstractFacade {
 
     
-    private static final String SERVER_UPLOAD_LOCATION_FOLDER = "../applications/__internal/BlogWS2015";
-    //private static final String SERVER_UPLOAD_LOCATION_FOLDER = "C://Users/Florian/Desktop/imgUpload/";     
-    //private static final String SERVER_UPLOAD_LOCATION_FOLDER = "/Applications/NetBeans/glassfish-4.1/glassfish/domains/domain1/docroot/uploadedImages/";
+   // private static final String SERVER_UPLOAD_LOCATION_FOLDER = "../applications/__internal/BlogWS2015";
+    private static final String SERVER_UPLOAD_LOCATION_FOLDER = "C:\\Users\\Florian\\Documents\\MBDS\\S1\\UE2ServeursAppliMobiquitaireServicesWeb\\WebService\\projetWS\\BlogWS2015\\build\\web\\img";     
+    private static final String URL_SERVER_LOCATION_FOLDER ="img/";
+//private static final String SERVER_UPLOAD_LOCATION_FOLDER = "/Applications/NetBeans/glassfish-4.1/glassfish/domains/domain1/docroot/uploadedImages/";
  
     @PersistenceContext
     private EntityManager em;
@@ -71,7 +72,7 @@ public class JerseyFileUpload extends AbstractFacade {
                 System.out.println("Fichier : " + filePath);
                 // Get the inputStream for the file and save it
                 saveFile(fileInputStream, filePath);
-                Image img = new Image(filePath);
+                Image img = new Image(URL_SERVER_LOCATION_FOLDER+headerOfFilePart.getFileName());
                 super.create(img);
                 ListeImages.add(img);
             }

@@ -3,44 +3,40 @@
 @import url(http://meyerweb.com/eric/tools/css/reset/reset.css);
 a{text-decoration: none;}
 
+html{
+    margin:0;
+    padding:0;
+    background: url('img/fondBlog.jpg') no-repeat center fixed; 
+    -webkit-background-size: cover; /* pour anciens Chrome et Safari */
+    background-size: cover; /* version standardisée */
+}
 body{
-    background:url('img/tiled-bg.gif');
+    background-color:rgba(248,248,248,0.95);
     margin:45px auto;
-    width:500px;
+    width:520px;
+    padding: 10px 20px;
     font-family: helvetica,sans-serif;
     font-size:13px;
-}
-
-.modalbox{
-    border-top: 1px solid white;
-    background: white;
-    background: -moz-linear-gradient(top, #F2F2F2 0%, #E3E3E3 100%)!important;
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,white), color-stop(100%,#E3E3E3))!important;
-    -moz-border-radius: 3px;
-    -webkit-border-radius: 3px;
     border-radius: 3px;
-    -webkit-box-shadow: 0 7px 20px #aaa;
-    -moz-box-shadow: 0 7px 20px #aaa;
-    box-shadow: 0 7px 20px #aaa;
+
 }
 
-#header{
-    padding:20px 20px 2px 20px;
+#header, header{
     text-align: center;
-    margin-bottom:40px;
+    margin-bottom:10px;
 }
 
-#header h1{
+#header h1, header h1{
     font-family: "Lobster", Arial;
     font-size:3.5em;
     color: #4CADEB;
     text-shadow : 0 1px 0 white;
-    padding-bottom:15px;
+   
     margin-bottom:10px;
-    background: url("img/post-sepa.gif") 0 bottom repeat-x;
+    /*background: url("img/post-sepa.gif") 0 bottom repeat-x;*/
 }
 
-#header h3{
+#header h3, header h3{
     font-family: 'Mate SC', serif;
     color:#636363;
     font-size:1.5em;
@@ -48,7 +44,6 @@ body{
 
 .modalbox{
     margin-top: 30px;
-    padding:20px;
 }
 .modalbox h3{
     color: black;
@@ -65,7 +60,7 @@ body{
     border-top: 1px solid #5BB4ED;
     color: #BDE4FD;
     display: block;
-    margin-bottom: 40px;
+    margin-top : 10px;
     padding: 10px;
     text-align: center;
     border-top: 1px solid #E5E5E5!important;
@@ -173,40 +168,40 @@ form textarea{
 }
 
 /* list Article */
-.article{
-    background: url(img/post-sepa.gif) 0 bottom repeat-x!important;
-    padding-bottom: 2px;
-    margin-bottom: 30px;
+article{
+    margin-top: 10px;
 }
-.article h2{
+.articlePost{
+   background-color:rgba(255,255,255,0.95);
+   border-radius: 3px;
+}
+.article h2, article h2{
     color: black;
-    font: 2.8em/40px 'Lobster',Arial,sans-serif;
+    font: 1.8em/40px 'Lobster',Arial,sans-serif;
     text-shadow: 0 1px 0 white;
     margin-bottom: 10px;
+    margin-top: 0;
+    text-align: center;
 }
 
 .content{
-    background-color: #eee;
-    padding:5px 10px 1.2em 10px;
+    padding:5px 20px 1.2em 20px;
     color:#232323;
     line-height: 16px;
+    text-align: justify;
 }
 .postmeta{
-    background: url("img/meta-bg.jpg") repeat-x scroll 0 0 #4CADEB;
-    border-bottom: 1px solid #449CD6;
-    border-top: 1px solid #5BB4ED;
+    /*background: url("img/meta-bg.jpg") repeat-x scroll 0 0 #4CADEB;*/
     color: #BDE4FD;
     display: block;
-    margin-bottom: 40px;
     padding: 10px;
     height:30px;
     position: relative;
-    border-top: 1px solid #E5E5E5!important;
     background: -moz-linear-gradient(top, #449CD6 0%, #5BB4ED 100%)!important;
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#449CD6), color-stop(100%,#5BB4ED))!important;
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#449cd6', endColorstr='#5bb4ed',GradientType=0 )!important;
-    -webkit-box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.3);
-    -moz-box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.3);
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
 }
 
 .postmeta:before{
@@ -236,4 +231,115 @@ form textarea{
     -webkit-box-shadow: 8px 12px 10px rgba(0, 0, 0, 0.2);
     -moz-transform: skew(15deg) rotate(3deg);
     -moz-box-shadow: 8px 12px 10px rgba(0, 0, 0, 0.2);
+}
+
+
+nav{
+    border-color: rgb(180,180,180) !important;
+    border-bottom: solid 1px;
+    border-top: solid 1px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+nav ul{
+    text-align: center;
+}
+nav li{
+    display: inline-block;
+}
+nav a{
+    color:#4CADEB;
+    font-family: 'Mate SC', serif;
+    padding: 10px;
+    
+}
+nav a:hover{
+    color:#3D33EB;
+    transform-origin: 50% 50%;
+    -moz-animation-duration: 4s;
+    -webkit-animation-duration: 4s;
+    animation-duration: 4s;
+    -moz-animation-name: animMenu;
+    -webkit-animation-name: animMenu;
+    animation-name: animMenu;
+    
+    /*-moz-animation-direction: alternate;
+    -webkit-animation-direction: alternate;
+    animation-direction: alternate;*/
+}
+
+@-moz-keyframes animMenu {
+  33%{
+     transform: rotate(10deg); 
+  }
+  66%{
+     transform: rotate(-10deg);
+  }
+  100%{
+    transform: rotate(0deg);  
+  }
+  
+}
+
+@-webkit-keyframes animMenu {
+ 33%{
+     transform: rotate(10deg); 
+  }
+  66%{
+     transform: rotate(-10deg);
+  }
+  100%{
+    transform: rotate(0deg);  
+  }
+  
+}
+
+@keyframes animMenu {
+  33%{
+     transform: rotate(10deg); 
+  }
+  66%{
+     transform: rotate(-10deg);
+  }
+  100%{
+    transform: rotate(0deg);  
+  }
+  
+}
+
+/* Style slider*/
+.slider{
+    position: relative;
+    margin-bottom: 15px;
+    border-radius: 3px;
+    width:200px;
+    height: 125px;
+    /*overflow: hidden;*/
+    margin-left: auto;
+    margin-right: auto;
+}
+.Limg img{
+    width: 200px;
+    height: 125px;
+}
+.Limg li{
+    display: inline;
+
+}
+.Limg{
+    position: absolute;
+    width: 1500px;
+   
+}
+.sliderButtons{
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.bReculer{
+    padding: 5px;
+}
+.bAvancer{
+    padding: 5px;
+    margin-left: 10px;
 }
