@@ -314,7 +314,7 @@ nav a:hover{
     border-radius: 3px;
     width:200px;
     height: 125px;
-    /*overflow: hidden;*/
+    overflow: hidden;
     margin-left: auto;
     margin-right: auto;
 }
@@ -329,6 +329,8 @@ nav a:hover{
 .Limg{
     position: absolute;
     width: 1500px;
+    left:0px;
+    transition: 0.3s;
    
 }
 .sliderButtons{

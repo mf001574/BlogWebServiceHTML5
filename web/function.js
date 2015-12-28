@@ -24,7 +24,7 @@ jQuery(document).ready(function($){
             $(data).each(function(){
                 i++
                 $("#list-article").prepend(renderItem(this.id, this.titre, this.content, this.time, this.images));
-                $('.bReculer').click(function(){
+                $('.bAvancer').click(function(){
                     var id = $(this).attr("value");
                     var nbImages =  $('#slider'+id)[0].childElementCount;
                     var left = $('#slider'+id).css("left");
@@ -38,7 +38,7 @@ jQuery(document).ready(function($){
                     valueLeft-=pasSlider;
                     $('#slider'+id).css('left',valueLeft+"px");
                 });
-                $('.bAvancer').click(function(){
+                $('.bReculer').click(function(){
                     var id = $(this).attr("value");
                     var left = $('#slider'+id).css("left");
                     var valueLeft = parseInt(left);
@@ -49,6 +49,7 @@ jQuery(document).ready(function($){
                         return 0;
                     }
                     valueLeft+=pasSlider;
+                    //$('#slider'+id).css('transition',"2s");
                     $('#slider'+id).css('left',valueLeft+"px");
                 });
             });
