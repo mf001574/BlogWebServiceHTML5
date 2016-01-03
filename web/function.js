@@ -220,16 +220,20 @@ jQuery(document).ready(function($){
         res+="<article id='article-"+id+"' class='articlePost'>\
                 <h2>"+titre+"</h2></a>\
                 <p class='content'>"+content+"</p>";
-        res+="<div class='slider'><ul class='Limg' id='slider"+id+"'>";
-        for (i=0;i<images.length;i++){
-            console.log(images[i].nomImage)
-            res+="<li><img src='"+images[i].nomImage+"'></li>";
+        if(images.length>0){
+           res+="<div class='slider'><ul class='Limg' id='slider"+id+"'>";
+            for (i=0;i<images.length;i++){
+                console.log(images[i].nomImage)
+                res+="<li><img src='"+images[i].nomImage+"'></li>";
+            }
+            res+="</ul></div>"; 
+            res+="<div class='sliderButtons'>";
+            res+="<button class='bReculer button blue' value='"+id+"'><i class='fa fa-arrow-circle-left'></i></button>";
+            res+= "<button class='bAvancer button blue' value='"+id+"'><i class='fa fa-arrow-circle-right'></i></button>";
+            res+= "</div>";
         }
-        res+="</ul></div>";
-        res+="<div class='sliderButtons'>";
-        res+="<button class='bReculer button blue' value='"+id+"'><i class='fa fa-arrow-circle-left'></i></button>";
-        res+= "<button class='bAvancer button blue' value='"+id+"'><i class='fa fa-arrow-circle-right'></i></button>";
-        res+= "</div>";
+        
+      
         res+="<div class='postmeta'>\n\
                     <p class='alignleft'>Article publi&eacute; le "+strDate+"</p>\n\
                     <p class='alignright'>\n\
