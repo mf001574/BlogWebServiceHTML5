@@ -22,13 +22,22 @@ public class Image implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String nomImage;
+    private String cheminAbsolu;
 
+    public String getCheminAbsolu() {
+        return cheminAbsolu;
+    }
+
+    public void setCheminAbsolu(String cheminAbsolu) {
+        this.cheminAbsolu = cheminAbsolu;
+    }
     public Image(){
         
     }
 
-    public Image(String nomImage) {
+    public Image(String nomImage, String cheminAbsolu) {
         this.nomImage = nomImage;
+        this.cheminAbsolu = cheminAbsolu;
     }
 
     public String getNomImage() {

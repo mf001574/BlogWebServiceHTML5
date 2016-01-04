@@ -8,11 +8,13 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import static javax.persistence.CascadeType.REMOVE;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -37,6 +39,7 @@ public class Article implements Serializable {
     // TIMESTAMP, contrairement à DATE, stocke l'heure en plus du jour/mois/année
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date time;
+    @OneToMany(cascade=REMOVE)
     private List<Image> images;
 
     /******* Constructeur *******/

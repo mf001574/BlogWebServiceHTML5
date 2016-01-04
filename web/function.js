@@ -227,10 +227,13 @@ jQuery(document).ready(function($){
                 res+="<li><img src='"+images[i].nomImage+"'></li>";
             }
             res+="</ul></div>"; 
-            res+="<div class='sliderButtons'>";
-            res+="<button class='bReculer button blue' value='"+id+"'><i class='fa fa-arrow-circle-left'></i></button>";
-            res+= "<button class='bAvancer button blue' value='"+id+"'><i class='fa fa-arrow-circle-right'></i></button>";
-            res+= "</div>";
+            if(images.length>1){
+                res+="<div class='sliderButtons'>";
+                res+="<button class='bReculer button blue' value='"+id+"'><i class='fa fa-arrow-circle-left'></i></button>";
+                res+= "<button class='bAvancer button blue' value='"+id+"'><i class='fa fa-arrow-circle-right'></i></button>";
+                res+= "</div>";
+            }
+         
         }
         
       

@@ -28,10 +28,11 @@ public class JerseyFileUpload extends AbstractFacade {
 
     
    // private static final String SERVER_UPLOAD_LOCATION_FOLDER = "../applications/__internal/BlogWS2015";
-    private static final String SERVER_UPLOAD_LOCATION_FOLDER = "C:\\Users\\Florian\\Documents\\MBDS\\S1\\UE2ServeursAppliMobiquitaireServicesWeb\\WebService\\projetWS\\BlogWS2015\\build\\web\\img";     
-    private static final String URL_SERVER_LOCATION_FOLDER ="img/";
-//private static final String SERVER_UPLOAD_LOCATION_FOLDER = "/Applications/NetBeans/glassfish-4.1/glassfish/domains/domain1/docroot/uploadedImages/";
- 
+    private static final String SERVER_UPLOAD_LOCATION_FOLDER = "C:\\Users\\Florian\\Documents\\MBDS\\S1\\UE2ServeursAppliMobiquitaireServicesWeb\\WebService\\projetWS\\BlogWS2015\\build\\web\\uploads";     
+    private static final String URL_SERVER_LOCATION_FOLDER ="uploads/";
+  //private static final String SERVER_UPLOAD_LOCATION_FOLDER = "/Applications/NetBeans/glassfish-4.1/glassfish/domains/domain1/docroot/uploadedImages/";
+    private static int NBIMG = 0;
+    
     @PersistenceContext
     private EntityManager em;
 
@@ -65,14 +66,20 @@ public class JerseyFileUpload extends AbstractFacade {
         ArrayList<Image> ListeImages = new ArrayList<Image>();
         if(files != null){
             for (FormDataBodyPart filePart : files) {
+                NBIMG++;
                 ContentDisposition headerOfFilePart = filePart.getContentDisposition();  
                 File output = new File(SERVER_UPLOAD_LOCATION_FOLDER);
                 String filePath =  output.getAbsolutePath() + File.separator+ headerOfFilePart.getFileName();
                 InputStream fileInputStream = filePart.getValueAs(InputStream.class);
-                System.out.println("Fichier : " + filePath);
+                System.out.println("Fichier : " + filePart.getName()+" "+ filePath);
                 // Get the inputStream for the file and save it
                 saveFile(fileInputStream, filePath);
-                Image img = new Image(URL_SERVER_LOCATION_FOLDER+headerOfFilePart.getFileName());
+                String extension = headerOfFilePart.getFileName().split("\\.")[1];
+                File fichier1 = new File(filePath);
+                File fichier2 = new File(SERVER_UPLOAD_LOCATION_FOLDER+File.separator+NBIMG+"."+extension);
+                fichier1.renameTo(fichier2);
+                //Image img = new Image(URL_SERVER_LOCATION_FOLDER+headerOfFilePart.getFileName());
+                Image img = new Image(URL_SERVER_LOCATION_FOLDER+fichier2.getName(),fichier2.getAbsolutePath());
                 super.create(img);
                 ListeImages.add(img);
             }

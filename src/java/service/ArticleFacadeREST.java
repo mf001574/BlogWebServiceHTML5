@@ -5,6 +5,9 @@
 package service;
 
 import entity.Article;
+import entity.Image;
+import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -61,7 +64,13 @@ public class ArticleFacadeREST extends AbstractFacade<Article> {
     @DELETE
     @Path("{id}")
     public String remove(@PathParam("id") Long id) {
-        super.remove(super.find(id));
+        Article a = super.find(id);
+        List<Image> lImg =  a.getImages();
+        for(Image img:lImg){
+            File f = new File(img.getCheminAbsolu());
+            f.delete();
+        }
+        super.remove(a);
         return "" + id;
     }
 
